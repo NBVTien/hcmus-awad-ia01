@@ -42,7 +42,7 @@ export default function Game() {
     <>
       <h1>Tic Tac Toe</h1>
       <div className="game">
-        <div className="game-board">
+        <div className="game-panel">
           <Board
             xIsNext={xIsNext}
             squares={currentSquares}

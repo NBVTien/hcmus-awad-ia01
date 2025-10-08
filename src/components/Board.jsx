@@ -50,22 +50,24 @@ function Board({ xIsNext, squares, onPlay, winningSquares }) {
   return (
     <>
       <div className="status">{status}</div>
-      {[...Array(BOARD_SIZE)].map((_, row) => (
-        <div key={row} className="board-row">
-          {[...Array(BOARD_SIZE)].map((_, col) => {
-            const index = row * BOARD_SIZE + col;
-            const isWinningSquare = winningSquares && winningSquares.includes(index);
-            return (
-              <Square
-                key={index}
-                value={squares[index]}
-                onSquareClick={() => handleClick(index)}
-                isWinning={isWinningSquare}
-              />
-            );
-          })}
-        </div>
-      ))}
+      <div className="board">
+        {[...Array(BOARD_SIZE)].map((_, row) => (
+          <div key={row} className="board-row">
+            {[...Array(BOARD_SIZE)].map((_, col) => {
+              const index = row * BOARD_SIZE + col;
+              const isWinningSquare = winningSquares && winningSquares.includes(index);
+              return (
+                <Square
+                  key={index}
+                  value={squares[index]}
+                  onSquareClick={() => handleClick(index)}
+                  isWinning={isWinningSquare}
+                />
+              );
+            })}
+          </div>
+        ))}
+      </div>
     </>
   );
 }

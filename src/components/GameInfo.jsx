@@ -8,40 +8,47 @@ import './GameInfo.css';
  * @returns {JSX.Element}
  */
 export default function GameInfo({ history, currentMove, isAscending, onJumpTo, onToggleSort }) {
-  let moves = history.map((step, move) => {
-    let description;
-    if (move > 0) {
-      const { row, col } = step.location;
-      description = `Go to move #${move} (${row}, ${col})`;
-    } else {
-      description = 'Go to game start';
-    }
-
-    if (move === currentMove) {
-      return (
-        <li key={move}>
-          <span className="current-move">You are at move #{move}</span>
-        </li>
-      );
-    }
-
-    return (
-      <li key={move}>
-        <button onClick={() => onJumpTo(move)}>{description}</button>
-      </li>
-    );
-  });
-
-  if (!isAscending) {
-    moves = moves.slice().reverse();
-  }
-
   return (
     <div className="game-info">
-      <button className="sort-button" onClick={onToggleSort}>
-        Sort: {isAscending ? 'Ascending ↓' : 'Descending ↑'}
-      </button>
-      <ol>{moves}</ol>
+      <table className="moves-table">
+        <thead>
+          <tr>
+            <th>
+              <div className="action-header">
+                <span>Action</span>
+                <button className="sort-button" onClick={onToggleSort}>
+                  {isAscending ? '↓' : '↑'}
+                </button>
+              </div>
+            </th>
+            <th>Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          {(isAscending ? history : history.slice().reverse()).map((step, index) => {
+            const actualMove = isAscending ? index : history.length - 1 - index;
+            const isCurrentMove = actualMove === currentMove;
+            const actionText = isCurrentMove 
+              ? `You are at move #${actualMove}` 
+              : `Go to move #${actualMove}`;
+            const position = actualMove > 0 && step.location 
+              ? `(${step.location.row}, ${step.location.col})` 
+              : actualMove === 0 ? 'Start' : '-';
+
+            return (
+              <tr 
+                key={actualMove} 
+                className={isCurrentMove ? 'current-move-row' : 'clickable-row'}
+                onClick={!isCurrentMove ? () => onJumpTo(actualMove) : undefined}
+                style={{ cursor: isCurrentMove ? 'default' : 'pointer' }}
+              >
+                <td className={isCurrentMove ? 'current-move-text' : ''}>{actionText}</td>
+                <td className="position-cell">{position}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }

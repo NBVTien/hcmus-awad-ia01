@@ -1,98 +1,153 @@
 .game-info {
   flex: 1;
-  min-width: 200px;
+  min-width: 300px;
+  animation: slideInRight 0.6s ease-out 0.4s backwards;
+}
+
+.moves-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f7fafc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.moves-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.moves-table th:first-child {
+  width: 65%;
+}
+
+.moves-table th:last-child {
+  width: 35%;
+  text-align: center;
+}
+
+.action-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
 }
 
 .sort-button {
-  width: 100%;
-  padding: 12px 20px;
-  margin-bottom: 15px;
-  background: var(--accent-color);
-  color: white;
+  background: inherit;
+  /* color: white; */
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 36px;
 }
 
 .sort-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
 }
 
 .sort-button:active {
-  transform: translateY(0);
+  transform: scale(0.95);
 }
 
-.current-move {
-  display: block;
-  width: 100%;
-  padding: 12px 20px;
-  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-  border: 2px solid #667eea;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 600;
+.moves-table tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+  animation: rowSlideIn 0.3s ease-out backwards;
+}
+
+.moves-table tbody tr:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.moves-table tbody tr:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.moves-table tbody tr:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.moves-table tbody tr:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.moves-table tbody tr:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+.moves-table tbody tr:nth-child(n+6) {
+  animation-delay: 0.3s;
+}
+
+.moves-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+@keyframes rowSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.moves-table tbody tr:nth-child(odd) {
+  background-color: #edf2f7; 
+}
+
+.moves-table tbody tr:nth-child(even) {
+  background-color: #f7fafc;
+}
+
+.moves-table tbody tr:hover {
+  background-color: #e2e8f0;
+  transform: translateX(2px);
+  transition: all 0.2s ease;
+}
+
+.clickable-row:hover {
+  background-color: #edf2f7;
+  transform: translateX(2px);
+}
+
+.clickable-row:active {
+  background-color: #e2e8f0;
+}
+
+.moves-table tbody tr.current-move-row td {
   color: #667eea;
-  text-align: left;
 }
 
-.game-info ol {
-  list-style: none;
-  padding: 0;
-  background: #f7fafc;
-  border-radius: 8px;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.game-info ol::-webkit-scrollbar {
-  width: 8px;
-}
-
-.game-info ol::-webkit-scrollbar-track {
-  background: #e2e8f0;
-  border-radius: 4px;
-}
-
-.game-info ol::-webkit-scrollbar-thumb {
-  background: #667eea;
-  border-radius: 4px;
-}
-
-.game-info li {
-  margin-bottom: 10px;
-}
-
-.game-info button {
-  width: 100%;
-  padding: 12px 20px;
-  background: white;
-  border: 2px solid #e2e8f0;
-  border-radius: 6px;
+.moves-table td {
+  padding: 12px 16px;
   font-size: 14px;
   font-weight: 500;
   color: #2d3748;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: left;
 }
 
-.game-info button:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border-color: transparent;
-  transform: translateX(5px);
-}
-
-.game-info button:active {
-  transform: translateX(3px);
-}
-
-.game-info button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+.position-cell {
+  text-align: center;
+  font-weight: 600;
 }

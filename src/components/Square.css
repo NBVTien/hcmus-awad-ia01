@@ -5,36 +5,55 @@
   width: 80px;
   height: 80px;
   background: #f7fafc;
-  border: 3px solid #e2e8f0;
-  border-radius: 8px;
+  border: none;
   font-size: 32px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   color: #2d3748;
+  position: relative;
+}
+
+.square svg {
+  animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .square:hover {
-  background: #edf2f7;
-  border-color: #667eea;
-  transform: scale(1.05);
+  background: #a7b3e9;
 }
 
-.square:active {
-  transform: scale(0.95);
+.square.winning {
+  color: #667eea;
 }
 
 .square:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
 }
 
-.square.winning {
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-  border-color: #ffa500;
-  animation: pulse 0.5s ease-in-out;
+@keyframes popIn {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
 
+@keyframes winningPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+  }
+  100% {
+    transform: scale(1.08);
+    box-shadow: 0 0 30px rgba(102, 126, 234, 0.9);
+  }
+}
 
 @media (max-width: 640px) {
   .square {

@@ -11,7 +11,7 @@ import './Square.css';
 function Square({ value, onSquareClick, isWinning }) {
   return (
     <button className={`square ${isWinning ? 'winning' : ''}`} onClick={onSquareClick}>
-      {value === 'X' && <X size={48} strokeWidth={3} />}
+      {value === 'X' && <X  size={48} strokeWidth={3} />}
       {value === 'O' && <Circle size={48} strokeWidth={3} />}
       {value === null && ''}
     </button>
