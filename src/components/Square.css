@@ -1,0 +1,45 @@
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  background: #f7fafc;
+  border: 3px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #2d3748;
+}
+
+.square:hover {
+  background: #edf2f7;
+  border-color: #667eea;
+  transform: scale(1.05);
+}
+
+.square:active {
+  transform: scale(0.95);
+}
+
+.square:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+.square.winning {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  border-color: #ffa500;
+  animation: pulse 0.5s ease-in-out;
+}
+
+
+@media (max-width: 640px) {
+  .square {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+}
